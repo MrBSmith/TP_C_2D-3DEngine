@@ -30,7 +30,14 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="include/SDL2" />
 		</Compiler>
+		<Linker>
+			<Add library="libmingw32.a" />
+			<Add library="lib/libSDL2main.a" />
+			<Add library="lib/libSDL2.dll.a" />
+			<Add directory="lib" />
+		</Linker>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
