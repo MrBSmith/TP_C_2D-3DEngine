@@ -1,0 +1,6 @@
+#ifndef INPUTKEY_H_INCLUDED
+#define INPUTKEY_H_INCLUDED
+
+typedef enum {UP, DOWN, RIGHT, LEFT, CONFIRM, CANCEL, ERROR} input;
+
+#endif // INPUTKEY_H_INCLUDED
