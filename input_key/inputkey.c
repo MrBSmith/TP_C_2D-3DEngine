@@ -2,38 +2,43 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "inputkey.h"
-int main()
+
+int inputkey_main()
 {
+    printf("Hello world from inputkey.c --> Execution de readkey une fois\n");
+    test();
     return 0;
 }
 
-input readkey ()
+void test()
 {
-char key;
-input control;
-
-getc(key);
-
-switch (key)
-{
-    case 'z':
-        (control=UP);
-    case 'q':
-        (control=LEFT);
-    case 'd':
-        (control=RIGHT);
-    case 's':
-        (control=DOWN);
-    case 'v':
-        (control=CONFIRM);
-    case 'n':
-        (control=CANCEL);
-    default :
-        (control=ERROR);
-
+    printf("Fonction test execute depuis inputkey.c\n");
 }
 
+input readkey()
+{
+    char key;
+    input control;
 
+    getc(key);
 
+    switch (key)
+    {
+        case 'z':
+            (control=UP);
+        case 'q':
+            (control=LEFT);
+        case 'd':
+            (control=RIGHT);
+        case 's':
+            (control=DOWN);
+        case 'v':
+            (control=CONFIRM);
+        case 'n':
+            (control=CANCEL);
+        default :
+            (control=ERROR);
+    }
 
+    return control;
 }

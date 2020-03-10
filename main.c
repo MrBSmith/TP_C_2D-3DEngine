@@ -6,5 +6,6 @@
 {
     SDL_Init(SDL_INIT_VIDEO);
     printf("Hello world!\n");
+    inputkey_main();
     return 0;
 }
