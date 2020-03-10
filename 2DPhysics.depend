@@ -351,3 +351,8 @@
 	"begin_code.h"
 	"close_code.h"
 
+1583229568 source:c:\ludus academie\c project 03 mars 2020 - 2d3d - groupe 5\main.c
+	<stdio.h>
+	<stdlib.h>
+	<SDL.h>
+
