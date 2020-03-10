@@ -38,6 +38,10 @@
 			<Add library="lib/libSDL2.dll.a" />
 			<Add directory="lib" />
 		</Linker>
+		<Unit filename="input_key/inputkey.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="input_key/inputkey.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
