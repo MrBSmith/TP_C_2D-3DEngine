@@ -1,44 +1,60 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdio.h>
+
 #include "inputkey.h"
 
-int inputkey_main()
-{
-    printf("Hello world from inputkey.c --> Execution de readkey une fois\n");
-    test();
-    return 0;
-}
 
-void test()
-{
-    printf("Fonction test execute depuis inputkey.c\n");
-}
-
-input readkey()
-{
-    char key;
+// Get the input from the player, and return it
+input get_input(int sym){
     input control;
 
-    getc(key);
+    switch(sym){
+        case SDLK_z:
+            control = UP; break;
 
-    switch (key)
-    {
-        case 'z':
-            (control=UP);
-        case 'q':
-            (control=LEFT);
-        case 'd':
-            (control=RIGHT);
-        case 's':
-            (control=DOWN);
-        case 'v':
-            (control=CONFIRM);
-        case 'n':
-            (control=CANCEL);
+        case SDLK_q:
+            control = LEFT; break;
+
+        case SDLK_d:
+            control = RIGHT; break;
+
+        case SDLK_s:
+            control = DOWN; break;
+
+        case SDLK_v:
+            control = CONFIRM; break;
+
+        case SDLK_n:
+            control = CANCEL; break;
+
         default :
-            (control=ERROR);
+            control = ERROR; break;
     }
 
     return control;
 }
+
+// Print the given input in the console
+void print_input(input inp){
+    if (inp != EMPTY){
+        printf("Input: ");
+        switch(inp)
+        {
+            case UP:
+                 printf("UP\n"); break;
+            case LEFT:
+                 printf("LEFT\n"); break;
+            case RIGHT:
+                printf("RIGHT\n"); break;
+            case DOWN:
+                printf("DOWN\n"); break;
+            case CONFIRM:
+                printf("CONFIRM\n"); break;
+            case CANCEL:
+                printf("CANCEL\n"); break;
+            default :
+                printf("ERROR\n"); break;
+        }
+    }
+}
+

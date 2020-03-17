@@ -1,8 +1,10 @@
 # depslib dependency file v1.0
-1583228878 source:d:\projets programmation\2dphysics\2dphysics\main.c
+1584452643 source:d:\projets programmation\2dphysics\2dphysics\main.c
 	<stdio.h>
 	<stdlib.h>
 	<SDL.h>
+	"SDL_manager/SDL_manager.h"
+	"SDL_event/SDL_event.h"
 
 1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -1062,4 +1064,24 @@
 	"inputkey.h"
 
 1583834147 c:\ludus academie\c project 03 mars 2020 - 2d3d - groupe 5\input_key\inputkey.h
+
+1584448563 source:d:\projets programmation\2dphysics\2dphysics\input_key\inputkey.c
+	<stdio.h>
+	<stdlib.h>
+	"inputkey.h"
+
+1584448285 d:\projets programmation\2dphysics\2dphysics\input_key\inputkey.h
+	<SDL.h>
+
+1584451279 source:d:\projets programmation\2dphysics\2dphysics\sdl_manager\sdl_manager.c
+	"SDL_manager.h"
+
+1584193740 d:\projets programmation\2dphysics\2dphysics\sdl_manager\sdl_manager.h
+	<stdio.h>
+	<stdlib.h>
+	<SDL.h>
+
+1584452633 d:\projets programmation\2dphysics\2dphysics\sdl_event\sdl_event.h
+	<SDL.h>
+	"../input_key/inputkey.h"
 
