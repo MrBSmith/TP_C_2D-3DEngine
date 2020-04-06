@@ -3,7 +3,6 @@
 
 #include "inputkey.h"
 
-
 // Get the input from the player, and return it
 input get_input(int sym){
     input control;

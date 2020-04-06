@@ -38,6 +38,16 @@
 			<Add library="lib/libSDL2.dll.a" />
 			<Add directory="lib" />
 		</Linker>
+		<Unit filename="SDL_event/SDL_event.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SDL_event/SDL_event.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="SDL_manager/SDL_manager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SDL_manager/SDL_manager.h" />
 		<Unit filename="input_key/inputkey.c">
 			<Option compilerVar="CC" />
 		</Unit>
