@@ -1,12 +1,18 @@
 # depslib dependency file v1.0
-1584452643 source:d:\projets programmation\2dphysics\2dphysics\main.c
+1589032805 source:d:\projets programmation\2dphysics\2dphysics\main.c
 	<stdio.h>
 	<stdlib.h>
 	<SDL.h>
-	"SDL_manager/SDL_manager.h"
-	"SDL_event/SDL_event.h"
+	"SDL_manager.h"
+	"SDL_event.h"
+	"delta.h"
+	"pile.h"
+	"cercle.h"
+	"vector.h"
+	"PhysicsBody.h"
+	"inputkey.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_assert.h"
@@ -39,12 +45,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_main.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_stdinc.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -73,27 +79,27 @@
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_config.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_platform.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\begin_code.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\begin_code.h
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\close_code.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\close_code.h
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_assert.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_assert.h
 	"SDL_config.h"
 	"begin_code.h"
 	<signal.h>
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_atomic.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_atomic.h
 	"SDL_stdinc.h"
 	"SDL_platform.h"
 	"begin_code.h"
@@ -101,7 +107,7 @@
 	<mbarrier.h>
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_audio.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -111,24 +117,24 @@
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_error.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_endian.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_endian.h
 	"SDL_stdinc.h"
 	<endian.h>
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_mutex.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_thread.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_atomic.h"
@@ -139,18 +145,18 @@
 	<stdlib.h>
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_rwops.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_clipboard.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_clipboard.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_cpuinfo.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_cpuinfo.h
 	"SDL_stdinc.h"
 	<intrin.h>
 	<intrin.h>
@@ -169,7 +175,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_events.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -183,7 +189,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_video.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_video.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -191,13 +197,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_pixels.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_pixels.h
 	"SDL_stdinc.h"
 	"SDL_endian.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_rect.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_rect.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_pixels.h"
@@ -205,7 +211,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_surface.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_surface.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -214,11 +220,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_blendmode.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_blendmode.h
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_keyboard.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keycode.h"
@@ -226,27 +232,27 @@
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_keycode.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_keycode.h
 	"SDL_stdinc.h"
 	"SDL_scancode.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_scancode.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_scancode.h
 	"SDL_stdinc.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_mouse.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_joystick.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_gamecontroller.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_gamecontroller.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
@@ -254,11 +260,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_quit.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_gesture.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_gesture.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -266,66 +272,66 @@
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_touch.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_touch.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_filesystem.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_filesystem.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_haptic.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_haptic.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_joystick.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_hints.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_hints.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_loadso.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_log.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_log.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_messagebox.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_messagebox.h
 	"SDL_stdinc.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_power.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_power.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_render.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_render.h
 	"SDL_stdinc.h"
 	"SDL_rect.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_sensor.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_sensor.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_shape.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_shape.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -334,7 +340,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_system.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_system.h
 	"SDL_stdinc.h"
 	"SDL_keyboard.h"
 	"SDL_render.h"
@@ -342,13 +348,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_timer.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_timer.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1564029277 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_version.h
+1564032877 d:\projets programmation\2dphysics\2dphysics\include\sdl2\sdl_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
@@ -1065,18 +1071,19 @@
 
 1583834147 c:\ludus academie\c project 03 mars 2020 - 2d3d - groupe 5\input_key\inputkey.h
 
-1584448563 source:d:\projets programmation\2dphysics\2dphysics\input_key\inputkey.c
+1588170921 source:d:\projets programmation\2dphysics\2dphysics\input_key\inputkey.c
 	<stdio.h>
 	<stdlib.h>
 	"inputkey.h"
 
-1584448285 d:\projets programmation\2dphysics\2dphysics\input_key\inputkey.h
+1588259225 d:\projets programmation\2dphysics\2dphysics\input_key\inputkey.h
 	<SDL.h>
+	"vector.h"
 
-1584451279 source:d:\projets programmation\2dphysics\2dphysics\sdl_manager\sdl_manager.c
+1586423472 source:d:\projets programmation\2dphysics\2dphysics\sdl_manager\sdl_manager.c
 	"SDL_manager.h"
 
-1584193740 d:\projets programmation\2dphysics\2dphysics\sdl_manager\sdl_manager.h
+1586163999 d:\projets programmation\2dphysics\2dphysics\sdl_manager\sdl_manager.h
 	<stdio.h>
 	<stdlib.h>
 	<SDL.h>
@@ -1084,4 +1091,75 @@
 1584452633 d:\projets programmation\2dphysics\2dphysics\sdl_event\sdl_event.h
 	<SDL.h>
 	"../input_key/inputkey.h"
+
+1586335996 source:d:\projets programmation\2dphysics\2dphysics\camera.c
+	"camera.h"
+
+1586437912 d:\projets programmation\2dphysics\2dphysics\camera.h
+	<stdio.h>
+	<stdlib.h>
+	"vector.h"
+
+1589027641 d:\projets programmation\2dphysics\2dphysics\vector.h
+
+1589026708 source:d:\projets programmation\2dphysics\2dphysics\cercle.c
+	"cercle.h"
+
+1588860967 d:\projets programmation\2dphysics\2dphysics\cercle.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<SDL.h>
+
+1584977921 source:d:\projets programmation\2dphysics\2dphysics\delta.c
+	"delta.h"
+
+1584977924 d:\projets programmation\2dphysics\2dphysics\delta.h
+	<SDL.h>
+
+1589032767 source:d:\projets programmation\2dphysics\2dphysics\physicsbody.c
+	"PhysicsBody.h"
+
+1589032587 d:\projets programmation\2dphysics\2dphysics\physicsbody.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<SDL.h>
+	"vector.h"
+	"cercle.h"
+	"inputkey.h"
+
+1588345298 source:d:\projets programmation\2dphysics\2dphysics\pile.c
+	"pile.h"
+
+1588345233 d:\projets programmation\2dphysics\2dphysics\pile.h
+	<stdio.h>
+	<stdlib.h>
+
+1586339647 source:d:\projets programmation\2dphysics\2dphysics\vector.c
+	"vector.h"
+
+1586423472 source:d:\projets programmation\2dphysics\2dphysics\sdl_manager.c
+	"SDL_manager.h"
+
+1586163999 d:\projets programmation\2dphysics\2dphysics\sdl_manager.h
+	<stdio.h>
+	<stdlib.h>
+	<SDL.h>
+
+1588170760 source:d:\projets programmation\2dphysics\2dphysics\sdl_event.c
+	"SDL_event.h"
+
+1588848653 d:\projets programmation\2dphysics\2dphysics\sdl_event.h
+	<SDL.h>
+	"inputkey.h"
+
+1589029972 d:\projets programmation\2dphysics\2dphysics\inputkey.h
+	<SDL.h>
+	"vector.h"
+
+1589029938 source:d:\projets programmation\2dphysics\2dphysics\inputkey.c
+	<stdio.h>
+	<stdlib.h>
+	"inputkey.h"
 

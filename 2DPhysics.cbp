@@ -38,23 +38,41 @@
 			<Add library="lib/libSDL2.dll.a" />
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="SDL_event/SDL_event.c">
+		<Unit filename="PhysicsBody.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="SDL_event/SDL_event.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="SDL_manager/SDL_manager.c">
+		<Unit filename="PhysicsBody.h" />
+		<Unit filename="SDL_event.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="SDL_manager/SDL_manager.h" />
-		<Unit filename="input_key/inputkey.c">
+		<Unit filename="SDL_event.h" />
+		<Unit filename="SDL_manager.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="input_key/inputkey.h" />
+		<Unit filename="SDL_manager.h" />
+		<Unit filename="camera.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="camera.h" />
+		<Unit filename="cercle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cercle.h" />
+		<Unit filename="delta.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="delta.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="pile.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pile.h" />
+		<Unit filename="vector.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vector.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

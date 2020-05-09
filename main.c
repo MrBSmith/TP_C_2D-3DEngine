@@ -2,23 +2,91 @@
 #include <stdlib.h>
 #include <SDL.h>
 
-#include "SDL_manager/SDL_manager.h"
-#include "SDL_event/SDL_event.h"
+#include "SDL_manager.h"
+#include "SDL_event.h"
+#include "delta.h"
+#include "pile.h"
+#include "cercle.h"
+#include "vector.h"
+#include "PhysicsBody.h"
+#include "inputkey.h"
 
- int main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-    // Initialisation du manager contenant la fenètre, le renderer, la surface et la texture principale de l'ecran
-    SDL_manager manager;
-    SDL_InitManager(&manager);
+    const vector2 vector2ZERO = {0, 0};
 
-    int exit = 0;
-    input current_input;
+    // The frames per seconds
+    const int FPS = 60;
 
-    // Boucle principale du programme
-    while(exit != 1){
-        // Reagit a un eventuel evenement (Quitter le programme, input...)
-        events_manager(&exit, &current_input);
+    SDL_manager* p_SDL_manager = SDL_InitManager();
+
+
+    SDL_Color red = {255, 0, 0, 255};
+
+    //SDL_Rect square_shape = {10, 10, 50, 50};
+    //physics_body* p_square = create_body(&square_shape, vector2ZERO);
+
+    circle circle_shape1 = {30, 30, 30};
+    physics_body* p_circle1 = create_body(&circle_shape1, vector2ZERO);
+
+    circle circle_shape2 = {150, 150, 30};
+    physics_body* p_circle2 = create_body(&circle_shape2, vector2ZERO);
+
+    // Define the variable holding the state of the program
+    int prog_finished = 0;
+
+    // Define the two players input manager
+    player_input_manager* p_input_manager = SDL_CreateInputManager(SDLK_z, SDLK_s, SDLK_q, SDLK_d, SDLK_SPACE, SDLK_ESCAPE);
+    player_input_manager* players_input_manager_array[1] = {p_input_manager};
+
+    // Main loop
+    while(prog_finished != 1)
+    {
+        // Check if an event has occurred, exit the program if necessary
+        if(events_manager(players_input_manager_array, 1) == 1){
+            return EXIT_SUCCESS;
+        }
+
+        // Compute the delta time between two frames
+        Uint32 current_tick = SDL_GetTicks();
+        double delta = SDL_GetDelta(current_tick);
+
+        // Wait enough time to regulate the display
+        SDL_regulate_FPS(FPS, delta);
+
+        //// PHYSICS ////
+
+        // Move the players
+        move_player(p_input_manager, p_circle1, 10, BOTH);
+
+        if(two_circles_collision((circle*) p_circle1 -> p_shape, (circle*) p_circle2 -> p_shape)){
+            revert_velocity(p_circle1);
+        }
+
+        p_circle1 -> velocity.x = 0;
+        p_circle1 -> velocity.y = 0;
+
+        //// RENDERING ////
+
+        // Refresh render
+        SDL_SetRenderDrawColor(p_SDL_manager -> p_renderer, 0, 0, 0, 255);
+        SDL_RenderClear(p_SDL_manager -> p_renderer);
+
+        // Set the draw color to be white
+        SDL_SetRenderDrawColor(p_SDL_manager -> p_renderer, 255, 255, 255, 255);
+
+        // Draw the circles
+        DrawFilledCircle(p_SDL_manager -> p_renderer, (circle*) p_circle1 -> p_shape, red);
+        DrawFilledCircle(p_SDL_manager -> p_renderer, (circle*) p_circle2 -> p_shape, red);
+
+        // Render
+        SDL_RenderPresent(p_SDL_manager -> p_renderer);
     }
 
-    return exit;
+    // Free from memory every elements of the manager
+    SDL_FreeManager(p_SDL_manager);
+
+    // Quit SDL before leaving th application
+    SDL_Quit();
+    return EXIT_SUCCESS;
 }

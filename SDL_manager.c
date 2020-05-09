@@ -1,13 +1,15 @@
 #include "SDL_manager.h"
 
 // Initialise la SDL et le SDL_Manager, renvoi EXIT_SUCCES
-int SDL_InitManager(SDL_manager* p_SDL_manager){
+SDL_manager* SDL_InitManager(){
+
+    SDL_manager* p_SDL_manager = malloc(sizeof(SDL_manager));
 
     // Initialisation de la SDL, de la fenêtre et du renderer associé
     if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) != EXIT_SUCCESS){
 
-        printf("Erreur d'initialisation de la SDL : %s", SDL_GetError()); // Affiche un message d'erreur si l'initialisation de la SDL a échouée
-        return EXIT_FAILURE; // On quitte le programme si l'ouverture de la SDL a échouée
+        // Affiche un message d'erreur si l'initialisation de la SDL a échouée
+        printf("Erreur d'initialisation de la SDL : %s", SDL_GetError());
 
     } else {
 
@@ -23,17 +25,15 @@ int SDL_InitManager(SDL_manager* p_SDL_manager){
         // Verification d'une potentielle erreur lors de la création de la fenêtre
         if(p_SDL_manager -> p_window == NULL){
             printf("Impossble de creer la fenetre: %s\n", SDL_GetError());
-            return EXIT_FAILURE;
         }
 
         // Verification d'une potentielle erreur lors de la création du renderer
         if(p_SDL_manager -> p_renderer == NULL){
             printf("Impossble de creer le renderer: %s\n", SDL_GetError());
-            return EXIT_FAILURE;
         }
     }
 
-    return EXIT_SUCCESS;
+    return p_SDL_manager;
 }
 
 
