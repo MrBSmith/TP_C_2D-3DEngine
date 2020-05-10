@@ -97,7 +97,7 @@ SDL_bool circle_and_rect_collision(circle* p_C, SDL_Rect* p_box){
     // Check by projection that the circle is inside the rect
     SDL_bool proj_vertical = segment_projection(p_C -> x, p_C -> y, p_box -> x, p_box -> y, p_box -> x, p_box -> y + p_box -> h);
     SDL_bool proj_horizontal = segment_projection(p_C -> x, p_C -> y, p_box -> x, p_box -> y, p_box -> x + p_box -> w, p_box -> y);
-    if (proj_vertical == SDL_TRUE || proj_horizontal == SDL_TRUE)
+    if (proj_vertical == SDL_TRUE && proj_horizontal == SDL_TRUE)
         return SDL_TRUE;
 
     return SDL_FALSE;
@@ -228,6 +228,16 @@ SDL_bool rect_polygone_collision(SDL_Rect* p_box, polygone* p_polygone){
     || point_polygone_collision(p_box -> x + p_box -> w, p_box -> y + p_box -> h, p_polygone) == SDL_TRUE)
         return SDL_TRUE;
 
+
+    // Check by projection that the circle is inside the rect
+    for(int i = 0; i < p_polygone -> nb_points; i++){
+        vector2 current_point = sum_vectors(p_polygone -> points[i], p_polygone -> origin);
+        SDL_bool proj_vertical = segment_projection(current_point.x, current_point.y, p_box -> x, p_box -> y, p_box -> x, p_box -> y + p_box -> h);
+        SDL_bool proj_horizontal = segment_projection(current_point.x, current_point.y, p_box -> x, p_box -> y, p_box -> x + p_box -> w, p_box -> y);
+        if (proj_vertical == SDL_TRUE && proj_horizontal == SDL_TRUE)
+            return SDL_TRUE;
+    }
+
     return SDL_FALSE;
 }
 
@@ -251,7 +261,7 @@ SDL_bool circle_polygone_collision(circle* p_C, polygone* p_polygone){
         return SDL_TRUE;
 
 
-    // Check if any segment constituing the shape is crossing the polygone
+    // Check if any segment constituing the polygone is crossing the circle
     for(int i = 0; i < p_polygone -> nb_points; i++){
         vector2 next_point;
         vector2 current_point = sum_vectors(p_polygone -> points[i], p_polygone -> origin);
