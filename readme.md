@@ -20,13 +20,13 @@
 ### GEOFFREY ZIEGELTRUM
 
 # RÔLES
-| Personne |         RÔLE 1        |                     RÔLE 2                     | RÔLE 3                         | RÔLE 4 | RÔLE 5 |
-|:--------:|:---------------------:|:----------------------------------------------:|:------------------------------:|:------:|:------:|
-| Geoffrey |         CARRE         |                     CERCLE                     |                ?               |    ?   |    ?   |
-|  Maxime  |         INPUTS        |                        ?                       |                ?               |    ?   |    ?   |
-|  Nicolas |         PLAYER        |                        ?                       |                ?               |    ?   |    ?   |
-|   Hugo   |  CREATION REPOSITORY  |                    PILE/LIST                   |     Vecteur2/Delta Time        |    ?   |    ?   |
-|   Lucas  | INITIALISATION GITHUB | INITIALISATION DU PROJET CODE::BLOCKS (C SDL2) |  PREMIER PUSH + REDISTRIBUTION |    ?   |    ?   |
+| Personne |         RÔLE 1        |                     RÔLE 2                     |             RÔLE 3             |
+|:--------:|:---------------------:|:----------------------------------------------:|:------------------------------:|
+| Geoffrey |         CARRE         |                     CERCLE                     |                ?               |
+|  Maxime  |         INPUTS        |                        ?                       |                ?               |
+|  Nicolas |         PLAYER        |                        ?                       |                ?               |
+|   Hugo   |  CREATION REPOSITORY  |              PILE/LIST + Event Manager         |     Vecteur2/Delta Time        |
+|   Lucas  | INITIALISATION GITHUB | INITIALISATION DU PROJET CODE::BLOCKS (C SDL2) |  PREMIER PUSH + REDISTRIBUTION |
 
 # BUT DU PROJET
 Coder en C un moteur physique 2D.
