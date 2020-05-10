@@ -62,6 +62,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="delta.h" />
+		<Unit filename="inputkey.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="inputkey.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

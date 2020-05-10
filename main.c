@@ -23,8 +23,8 @@ int main(int argc, char *argv[])
 
     SDL_Color red = {255, 0, 0, 255};
 
-    //SDL_Rect square_shape = {10, 10, 50, 50};
-    //physics_body* p_square = create_body(&square_shape, vector2ZERO);
+    SDL_Rect square_shape = {200, 10, 30, 30};
+    physics_body* p_square = create_body(&square_shape, vector2ZERO);
 
     circle circle_shape1 = {30, 30, 30};
     physics_body* p_circle1 = create_body(&circle_shape1, vector2ZERO);
@@ -61,6 +61,8 @@ int main(int argc, char *argv[])
 
         if(two_circles_collision((circle*) p_circle1 -> p_shape, (circle*) p_circle2 -> p_shape)){
             revert_velocity(p_circle1);
+        } else if (circle_and_rect_collision((circle*) p_circle1 -> p_shape, (SDL_Rect*) p_square -> p_shape)){
+            revert_velocity(p_circle1);
         }
 
         p_circle1 -> velocity.x = 0;
@@ -76,6 +78,7 @@ int main(int argc, char *argv[])
         SDL_SetRenderDrawColor(p_SDL_manager -> p_renderer, 255, 255, 255, 255);
 
         // Draw the circles
+        SDL_RenderFillRect(p_SDL_manager -> p_renderer, p_square -> p_shape);
         DrawFilledCircle(p_SDL_manager -> p_renderer, (circle*) p_circle1 -> p_shape, red);
         DrawFilledCircle(p_SDL_manager -> p_renderer, (circle*) p_circle2 -> p_shape, red);
 

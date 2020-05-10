@@ -56,13 +56,11 @@ SDL_bool two_rects_collision(SDL_Rect* p_shape1, SDL_Rect* p_shape2, SDL_bool ex
 
     // Check for a collision
     if(extern_collision == SDL_TRUE){ // extern collision
-        if(bottom1 <= top2 || top1 >= bottom2 || right1 <= left2 || left1 >= right2){
+        if(bottom1 <= top2 || top1 >= bottom2 || right1 <= left2 || left1 >= right2)
             result = SDL_FALSE;
-        }
     } else { // intern collision (When you want to know when p_shape1 is colliding with the border of p_shape2 from within)
-        if(top1 > top2 && bottom1 < bottom2 && left1 > left2 && right1 < right2){
+        if(top1 > top2 && bottom1 < bottom2 && left1 > left2 && right1 < right2)
             result = SDL_FALSE;
-        }
     }
 
     return result;
@@ -78,6 +76,80 @@ SDL_bool two_circles_collision(circle* c1, circle* c2){
       return SDL_TRUE;
 }
 
+
+SDL_bool circle_and_rect_collision(circle* p_C, SDL_Rect* p_box){
+    // Compute the box surrounding the circle, and check is there is collision with the rect
+    SDL_Rect* p_boxCircle = get_box_around_circle(p_C);
+    if (two_rects_collision(p_box, p_boxCircle, SDL_TRUE) == SDL_FALSE)
+      return SDL_FALSE;
+
+    // Check if one of the corner of the rect is inside the circle
+    if (point_and_circle_collision(p_box -> x, p_box -> y, p_C) == SDL_TRUE
+    || point_and_circle_collision(p_box -> x, p_box -> y + p_box -> h, p_C) == SDL_TRUE
+    || point_and_circle_collision(p_box -> x + p_box -> w, p_box -> y, p_C) == SDL_TRUE
+    || point_and_circle_collision(p_box -> x + p_box -> w, p_box -> y + p_box -> h, p_C) == SDL_TRUE)
+        return SDL_TRUE;
+
+    // Check if the center of the circle is inside the box
+    if (point_and_rect_collision(p_C -> x, p_C -> y, p_box) == SDL_TRUE)
+      return SDL_TRUE;
+
+    // Check by projection that the circle is inside the rect
+    SDL_bool proj_vertical = segment_projection(p_C -> x, p_C -> y, p_box -> x, p_box -> y, p_box -> x, p_box -> y + p_box -> h);
+    SDL_bool proj_horizontal = segment_projection(p_C -> x, p_C -> y, p_box -> x, p_box -> y, p_box -> x + p_box -> w, p_box -> y);
+    if (proj_vertical == SDL_TRUE || proj_horizontal == SDL_TRUE)
+        return SDL_TRUE;
+
+    return SDL_FALSE;
+}
+
+// Check if a point is inside the given rect
+SDL_bool point_and_rect_collision(int x,int y, SDL_Rect* p_box){
+   if (x >= p_box -> x
+    && x < p_box -> x + p_box -> w
+    && y >= p_box -> y
+    && y < p_box -> y + p_box -> h)
+       return SDL_TRUE;
+   else
+       return SDL_FALSE;
+}
+
+
+// Check if a point is inside the given circle
+SDL_bool point_and_circle_collision(int x, int y, circle* p_C){
+   int d2 = (x - p_C -> x) * (x - p_C -> x) + (y - p_C -> y) * (y - p_C -> y);
+   if (d2 > p_C -> radius * p_C -> radius)
+      return SDL_FALSE;
+   else
+      return SDL_TRUE;
+}
+
+
+// Check if the projection of the given point is inside the given segment
+SDL_bool segment_projection(int Cx, int Cy, int Ax, int Ay, int Bx, int By){
+   int ACx = Cx - Ax;
+   int ACy = Cy - Ay;
+   int ABx = Bx - Ax;
+   int ABy = By - Ay;
+   int BCx = Cx - Bx;
+   int BCy = Cy - By;
+   int s1 = (ACx * ABx) + (ACy * ABy);
+   int s2 = (BCx * ABx) + (BCy * ABy);
+   if(s1 * s2 > 0)
+     return SDL_FALSE;
+   return SDL_TRUE;
+}
+
+
+// Return the surrounding box around the given circle
+SDL_Rect* get_box_around_circle(circle* p_c){
+    SDL_Rect* p_rect = malloc(sizeof(SDL_Rect));
+    p_rect -> x = p_c -> x - p_c -> radius;
+    p_rect -> y = p_c -> y - p_c -> radius;
+    p_rect -> w = p_c -> radius * 2;
+    p_rect -> h = p_c -> radius * 2;
+    return p_rect;
+}
 
 // Respond to the input of the player by moving the character
 void move_player(player_input_manager* p_player_input_manager, physics_body* p_body, int move_speed, move_flag flag){
