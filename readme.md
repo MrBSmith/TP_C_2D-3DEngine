@@ -11,7 +11,7 @@
 ### 03 Mars 2020 - 09h23
 
 # DEADLINE
-### ?? ?? ???? - ??h??
+### 12 Mai 2020
 
 # EFFECTIF
 ### MAXIME UJMA
@@ -20,23 +20,13 @@
 ### GEOFFREY ZIEGELTRUM
 
 # RÔLES
-| Personne |         RÔLE 1        |                     RÔLE 2                     | RÔLE 3 | RÔLE 4 | RÔLE 5 |
-|:--------:|:---------------------:|:----------------------------------------------:|:------:|:------:|:------:|
-| Geoffrey |           ?           |                        ?                       |    ?   |    ?   |    ?   |
-|  Maxime  |           ?           |                        ?                       |    ?   |    ?   |    ?   |
-|  Nicolas |           ?           |                        ?                       |    ?   |    ?   |    ?   |
-|   Hugo   |  CREATION REPOSITORY  |                        ?                       |    ?   |    ?   |    ?   |
-|   Lucas  | INITIALISATION GITHUB | INITIALISATION DU PROJET CODE::BLOCKS (C SDL2) |    ?   |    ?   |    ?   |
+| Personne |         RÔLE 1        |                     RÔLE 2                     | RÔLE 3                         | RÔLE 4 | RÔLE 5 |
+|:--------:|:---------------------:|:----------------------------------------------:|:------------------------------:|:------:|:------:|
+| Geoffrey |         CARRE         |                     CERCLE                     |                ?               |    ?   |    ?   |
+|  Maxime  |         INPUTS        |                        ?                       |                ?               |    ?   |    ?   |
+|  Nicolas |         PLAYER        |                        ?                       |                ?               |    ?   |    ?   |
+|   Hugo   |  CREATION REPOSITORY  |                    PILE/LIST                   |     Vecteur2/Delta Time        |    ?   |    ?   |
+|   Lucas  | INITIALISATION GITHUB | INITIALISATION DU PROJET CODE::BLOCKS (C SDL2) |  PREMIER PUSH + REDISTRIBUTION |    ?   |    ?   |
 
 # BUT DU PROJET
-_A compléter_
-
-# NOMENCLATURE A SUIVRE / NORME DE PROGRAMMATION
-_ A compléter_
-
-# ARBORESCENCE DES FICHIERS
-_ A compléter_
-
-# ORGANISATION DES BRANCHES GITHUB
-##### GIT FLOW
-_A compléter_
+Coder en C un moteur physique 2D.
