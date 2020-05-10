@@ -7,5 +7,6 @@ typedef struct vector2{
 } vector2;
 
 vector2 linear_interpolate(vector2 in_vec, vector2 dest_vec, float weight);
+vector2 sum_vectors(vector2 v1, vector2 v2);
 
 #endif // VECTOR_H_INCLUDED
