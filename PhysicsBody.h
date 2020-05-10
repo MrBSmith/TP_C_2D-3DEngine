@@ -8,6 +8,7 @@
 #include "vector.h"
 #include "cercle.h"
 #include "inputkey.h"
+#include "polygone.h"
 
 typedef enum move_flag {BOTH, VERTICAL, HORIZONTAL} move_flag;
 
@@ -29,15 +30,18 @@ physics_body* create_body(void* p_shape, vector2 initial_velocity);
 void apply_velocity(physics_body* p_body);
 void revert_velocity(physics_body* p_body);
 
-
 // Collision test functions
 SDL_bool point_and_circle_collision(int x, int y, circle* p_C);
 SDL_bool point_and_rect_collision(int x,int y, SDL_Rect* p_box);
+SDL_bool segment_circle_collision(vector2 A, vector2 B, circle* p_C);
 SDL_bool two_rects_collision(SDL_Rect* p_shape1, SDL_Rect* p_shape2, SDL_bool extern_collision);
 SDL_bool two_circles_collision(circle* c1, circle* c2);
 SDL_bool circle_and_rect_collision(circle* p_C, SDL_Rect* p_box);
 SDL_bool is_collision_lateral(collision* p_collision);
 SDL_bool segment_projection(int Cx, int Cy, int Ax, int Ay, int Bx, int By);
+SDL_bool point_polygone_collision(int point_x, int point_y, polygone* p_polygone);
+SDL_bool rect_polygone_collision(SDL_Rect* p_box, polygone* p_polygone);
+SDL_bool circle_polygone_collision(circle* p_C, polygone* p_polygone);
 
 SDL_Rect* get_box_around_circle(circle* p_circle);
 

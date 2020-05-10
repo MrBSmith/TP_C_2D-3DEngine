@@ -10,6 +10,7 @@
 #include "vector.h"
 #include "PhysicsBody.h"
 #include "inputkey.h"
+#include "polygone.h"
 
 int main(int argc, char *argv[])
 {
@@ -20,9 +21,10 @@ int main(int argc, char *argv[])
 
     SDL_manager* p_SDL_manager = SDL_InitManager();
 
-
     SDL_Color red = {255, 0, 0, 255};
 
+
+    // Define the shapes
     SDL_Rect square_shape = {200, 10, 30, 30};
     physics_body* p_square = create_body(&square_shape, vector2ZERO);
 
@@ -31,6 +33,12 @@ int main(int argc, char *argv[])
 
     circle circle_shape2 = {150, 150, 30};
     physics_body* p_circle2 = create_body(&circle_shape2, vector2ZERO);
+
+    vector2 point_array[4] = {{0, -10}, {-10, 10}, {0, 100}, {10, 10}};
+    vector2 pos = {300, 300};
+    polygone* p_polygone = create_polygone(point_array, pos, 4);
+    physics_body* p_triangle = create_body(p_polygone, vector2ZERO);
+
 
     // Define the variable holding the state of the program
     int prog_finished = 0;
@@ -59,14 +67,13 @@ int main(int argc, char *argv[])
         // Move the players
         move_player(p_input_manager, p_circle1, 10, BOTH);
 
-        if(two_circles_collision((circle*) p_circle1 -> p_shape, (circle*) p_circle2 -> p_shape)){
-            revert_velocity(p_circle1);
-        } else if (circle_and_rect_collision((circle*) p_circle1 -> p_shape, (SDL_Rect*) p_square -> p_shape)){
+        if((two_circles_collision((circle*) p_circle1 -> p_shape, (circle*) p_circle2 -> p_shape) == SDL_TRUE)
+        || (circle_and_rect_collision((circle*) p_circle1 -> p_shape, (SDL_Rect*) p_square -> p_shape) == SDL_TRUE)
+        || (circle_polygone_collision((circle*) p_circle1 -> p_shape, (polygone*) p_triangle -> p_shape)== SDL_TRUE)){
             revert_velocity(p_circle1);
         }
 
-        p_circle1 -> velocity.x = 0;
-        p_circle1 -> velocity.y = 0;
+        p_circle1 -> velocity = vector2ZERO;
 
         //// RENDERING ////
 
@@ -77,10 +84,11 @@ int main(int argc, char *argv[])
         // Set the draw color to be white
         SDL_SetRenderDrawColor(p_SDL_manager -> p_renderer, 255, 255, 255, 255);
 
-        // Draw the circles
+        // Draw the shapes
         SDL_RenderFillRect(p_SDL_manager -> p_renderer, p_square -> p_shape);
         DrawFilledCircle(p_SDL_manager -> p_renderer, (circle*) p_circle1 -> p_shape, red);
         DrawFilledCircle(p_SDL_manager -> p_renderer, (circle*) p_circle2 -> p_shape, red);
+        draw_polygone(p_SDL_manager -> p_renderer, (polygone*) p_triangle -> p_shape, red);
 
         // Render
         SDL_RenderPresent(p_SDL_manager -> p_renderer);

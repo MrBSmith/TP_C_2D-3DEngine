@@ -140,6 +140,47 @@ SDL_bool segment_projection(int Cx, int Cy, int Ax, int Ay, int Bx, int By){
    return SDL_TRUE;
 }
 
+SDL_bool line_collision(vector2 A, vector2 B, circle* p_C)
+{
+   vector2 u, AC;
+   u.x = B.x - A.x;
+   u.y = B.y - A.y;
+   AC.x = p_C -> x - A.x;
+   AC.y = p_C -> y - A.y;
+   float numerateur = u.x * AC.y - u.y * AC.x;   // norme du vecteur v
+   if (numerateur < 0)
+      numerateur = -numerateur ;   // valeur absolue ; si c'est négatif, on prend l'opposé.
+   float denominateur = sqrt(u.x * u.x + u.y * u.y);  // norme de u
+   float CI = numerateur / denominateur;
+   if (CI < p_C -> radius)
+      return SDL_TRUE;
+   else
+      return SDL_FALSE;
+}
+
+
+SDL_bool segment_circle_collision(vector2 A, vector2 B, circle* p_C){
+   if (line_collision(A, B, p_C) == SDL_FALSE)
+     return SDL_FALSE;  // si on ne touche pas la droite, on ne touchera jamais le segment
+   vector2 AB, AC, BC;
+   AB.x = B.x - A.x;
+   AB.y = B.y - A.y;
+   AC.x = p_C -> x - A.x;
+   AC.y = p_C -> y - A.y;
+   BC.x = p_C -> x - B.x;
+   BC.y = p_C -> y - B.y;
+   int pscal1 = AB.x * AC.x + AB.y * AC.y;  // produit scalaire
+   int pscal2 = (-AB.x) * BC.x + (-AB.y) * BC.y;  // produit scalaire
+   if (pscal1 >= 0 && pscal2 >= 0)
+      return SDL_TRUE;   // I entre A et B, ok.
+   // dernière possibilité, A ou B dans le cercle
+   if (point_and_circle_collision(A.x, A.y, p_C))
+     return SDL_TRUE;
+   if (point_and_circle_collision(B.x, B.y, p_C))
+     return SDL_TRUE;
+   return SDL_FALSE;
+}
+
 
 // Return the surrounding box around the given circle
 SDL_Rect* get_box_around_circle(circle* p_c){
@@ -150,6 +191,84 @@ SDL_Rect* get_box_around_circle(circle* p_c){
     p_rect -> h = p_c -> radius * 2;
     return p_rect;
 }
+
+
+// Check if a point is inside a convex polygone
+SDL_bool point_polygone_collision(int point_x, int point_y, polygone* p_polygone){
+  for(int i = 0; i < p_polygone -> nb_points; i++){
+
+     vector2 A = sum_vectors(p_polygone -> points[i], p_polygone -> origin);
+     vector2 B;
+
+     if (i == p_polygone -> nb_points - 1)  // If its the last point, link to the first one
+         B = sum_vectors(p_polygone -> points[0], p_polygone -> origin);
+     else           // else links to the next one
+         B = sum_vectors(p_polygone -> points[i + 1], p_polygone -> origin);
+
+     vector2 D, T;
+     D.x = B.x - A.x;
+     D.y = B.y - A.y;
+     T.x = point_x - A.x;
+     T.y = point_y - A.y;
+     int d = D.x * T.y - D.y * T.x;
+     if(d < 0)
+        return SDL_FALSE;
+  }
+  return SDL_TRUE;
+}
+
+
+// Check for a collision between a rect and a polygone
+SDL_bool rect_polygone_collision(SDL_Rect* p_box, polygone* p_polygone){
+
+    // Check if one of the corner of the rect is inside the circle
+    if (point_polygone_collision(p_box -> x, p_box -> y, p_polygone) == SDL_TRUE
+    || point_polygone_collision(p_box -> x, p_box -> y + p_box -> h, p_polygone) == SDL_TRUE
+    || point_polygone_collision(p_box -> x + p_box -> w, p_box -> y, p_polygone) == SDL_TRUE
+    || point_polygone_collision(p_box -> x + p_box -> w, p_box -> y + p_box -> h, p_polygone) == SDL_TRUE)
+        return SDL_TRUE;
+
+    return SDL_FALSE;
+}
+
+// Check for a collision between a circle and a polygone
+SDL_bool circle_polygone_collision(circle* p_C, polygone* p_polygone){
+
+    // Check if any corners of the rect of the circle is colliding with the polygone
+    SDL_Rect* p_rect = get_box_around_circle(p_C);
+    if (rect_polygone_collision(p_rect, p_polygone) == SDL_TRUE)
+        return SDL_TRUE;
+
+    // Check if any of the point of the polygone is inside the circle
+    for(int i = 0; i < p_polygone -> nb_points; i++){
+        vector2 current_point = sum_vectors(p_polygone -> points[i], p_polygone -> origin);
+        if(point_and_circle_collision(current_point.x, current_point.y, p_C) == SDL_TRUE)
+            return SDL_TRUE;
+    }
+
+    // Check if the origin of the circle is inside the polygone
+    if(point_polygone_collision(p_C -> x, p_C -> y, p_polygone))
+        return SDL_TRUE;
+
+
+    // Check if any segment constituing the shape is crossing the polygone
+    for(int i = 0; i < p_polygone -> nb_points; i++){
+        vector2 next_point;
+        vector2 current_point = sum_vectors(p_polygone -> points[i], p_polygone -> origin);
+        if (i == p_polygone -> nb_points){
+            next_point = sum_vectors(p_polygone -> points[0], p_polygone -> origin);
+        } else {
+            next_point = sum_vectors(p_polygone -> points[i + 1], p_polygone -> origin);
+        }
+
+        if (segment_circle_collision(current_point, next_point, p_C) == SDL_TRUE){
+            return SDL_TRUE;
+        }
+    }
+
+    return SDL_FALSE;
+}
+
 
 // Respond to the input of the player by moving the character
 void move_player(player_input_manager* p_player_input_manager, physics_body* p_body, int move_speed, move_flag flag){

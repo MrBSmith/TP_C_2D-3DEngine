@@ -7,3 +7,11 @@ vector2 linear_interpolate(vector2 in_vec, vector2 dest_vec, float weight){
     return out_vec;
 }
 
+vector2 sum_vectors(vector2 v1, vector2 v2){
+    vector2 result_v;
+
+    result_v.x = v1.x + v2.x;
+    result_v.y = v1.y + v2.y;
+
+    return result_v;
+}
